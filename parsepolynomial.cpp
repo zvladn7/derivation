@@ -74,7 +74,7 @@ bool ParsePolynomial::isMorePriority(const std::string &oper1, const std::string
 //  return ((str == "+") || (str == "-") || (str == "*") || str[]);
 //}
 
-double ParsePolynomial::getResult()
+double ParsePolynomial::getResult(double value)
 {
   pushExpressionToQueue();
   std::stack<std::string> operands;
@@ -101,18 +101,18 @@ double ParsePolynomial::getResult()
       }
       else
       {
-        componentsResults.push(popStack(operators, operands));
+        componentsResults.push(popStack(operators, operands, value));
         popStack(componentsOperation, componentsResults);
       }
     }
     queue_.pop();
   }
-  componentsResults.push(popStack(operators, operands));
+  componentsResults.push(popStack(operators, operands, value));
   popStack(componentsOperation, componentsResults);
   return componentsResults.top();;
 }
 
-double ParsePolynomial::popStack(std::stack<std::string> &operators, std::stack<std::string> &operands)
+double ParsePolynomial::popStack(std::stack<std::string> &operators, std::stack<std::string> &operands, double value)
 {
   auto fun1 = Pow(X, 1);
   bool check1 = false;
@@ -137,14 +137,14 @@ double ParsePolynomial::popStack(std::stack<std::string> &operators, std::stack<
       fun1 = Pow(X, num1);
       check1 = true;
       auto df = derivative(fun1);
-      result = df(2);
+      result = df(value);
     }
     else if (operands.top() == "x")
     {
       check1 = true;
       operands.pop();
       auto df = derivative(fun1);
-      result = df(2);
+      result = df(value);
     }
     if (oper == "*")
     {
@@ -155,7 +155,7 @@ double ParsePolynomial::popStack(std::stack<std::string> &operators, std::stack<
       {
         auto fun2 = fun1 * num;
         auto df = derivative(fun2);
-        result = df(2);
+        result = df(value);
       }
     }
   }
