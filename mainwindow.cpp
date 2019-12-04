@@ -5,6 +5,7 @@
 #include <sstream>
 #include <polynomialchecker.hpp>
 #include <parsepolynomial.hpp>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -63,6 +64,11 @@ void MainWindow::get_result()
     ParsePolynomial parseString(stream);
     ui->derivationResult->setText(QString::number(parseString.getResult(ui->x_value->text().toDouble())));
   }
+  else
+  {
+    on_pushButton_clear_clicked();
+    QMessageBox::warning(this, "Derivative", "The expression you written is incorrect format!");
+  }
 }
 
 bool MainWindow::isOperation(QString str)
@@ -105,6 +111,7 @@ void MainWindow::get_operations()
 void MainWindow::on_pushButton_clear_clicked()
 {
     ui->resultShow->setText("");
+    ui->resultKeyBoardShow->setText("");
 }
 
 void MainWindow::get_x()
@@ -118,3 +125,9 @@ void MainWindow::get_x()
   }
 }
 
+
+void MainWindow::on_eraseLast_clicked()
+{
+  std::string currentExp = ui->resultShow->text().toStdString();
+  ui->resultShow->setText(QString::fromUtf8(currentExp.substr(0, currentExp.length() - 1).c_str()));
+}

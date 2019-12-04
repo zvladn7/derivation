@@ -26,6 +26,7 @@ private slots:
   void get_result();
   void on_pushButton_clear_clicked();
   void send_expression();
+  void on_eraseLast_clicked();
 };
 
 #endif // MAINWINDOW_HPP
