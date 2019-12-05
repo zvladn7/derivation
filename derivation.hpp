@@ -1,8 +1,8 @@
 #ifndef DERIVATION_HPP
 #define DERIVATION_HPP
 #include <functional>
-#include <operations.hpp>
-#include <basefunctions.hpp>
+#include "operations.hpp"
+#include "basefunctions.hpp"
 
 extern Simple X;
 

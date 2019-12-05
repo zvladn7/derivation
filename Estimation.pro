@@ -27,7 +27,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     parsepolynomial.cpp \
-    polynomialchecker.cpp
+    polynomialchecker.cpp \
+    test-polynomial-checker.cpp \
+    basefunctions.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    parsepolynomial.cpp \
+    polynomialchecker.cpp \
+    test-polynomial-checker.cpp
 
 HEADERS += \
         mainwindow.hpp \
@@ -36,7 +43,14 @@ HEADERS += \
     derivation.hpp \
     parsepolynomial.hpp \
     polynomialchecker.hpp \
-    functions.hpp
+    functions.hpp \
+    basefunctions.hpp \
+    derivation.hpp \
+    functions.hpp \
+    mainwindow.hpp \
+    operations.hpp \
+    parsepolynomial.hpp \
+    polynomialchecker.hpp
 
 FORMS += \
         mainwindow.ui

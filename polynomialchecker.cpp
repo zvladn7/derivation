@@ -1,12 +1,18 @@
-#include <polynomialchecker.hpp>
+#include "polynomialchecker.hpp"
 #include <algorithm>
 #include <iostream>
-#include <functions.hpp>
+#include "functions.hpp"
 
 PolynomialChecker::PolynomialChecker(const std::string &forCheck) :
   forCheck_(forCheck)
 {
 }
+
+void PolynomialChecker::setNextExp(const std::string &forCheck)
+{
+  forCheck_ = forCheck;
+}
+
 
 bool PolynomialChecker::isCorrect() {
   bool isCorrect = true;
@@ -15,6 +21,11 @@ bool PolynomialChecker::isCorrect() {
     return false;
   }
   char previous = forCheck_[0];
+  char lastChar = forCheck_[forCheck_.length() - 1];
+  if (isPoint(lastChar) || isRightOperation(lastChar))
+  {
+    return false;
+  }
   //std::for_each(++std::begin(forCheck_), std::end(forCheck_), [&](char current) {
   for (std::size_t i = 1; i < forCheck_.length(); ++i) {
     char current = forCheck_[i];
@@ -22,7 +33,7 @@ bool PolynomialChecker::isCorrect() {
     {
       isCorrect = false;
     }
-    else if (isRightOperation(previous) && !(isdigit(current) || isX(current)))
+    else if (isRightOperation(previous) && !(isdigit(current) || isX(current) || isPoint(current)))
     {
       isCorrect = false;
     }
@@ -39,6 +50,7 @@ bool PolynomialChecker::isCorrect() {
       isCorrect = false;
     }
     previous = current;
+
   }
 
   return isCorrect;

@@ -7,6 +7,7 @@ class PolynomialChecker
 public:
   PolynomialChecker(const std::string &forCheck);
   bool isCorrect();
+  void setNextExp(const std::string &forCheck);
 private:
   std::string forCheck_;
 };

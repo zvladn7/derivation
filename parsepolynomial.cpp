@@ -1,11 +1,11 @@
 #include "parsepolynomial.hpp"
 #include <algorithm>
 #include <iterator>
-#include <functions.hpp>
+#include "functions.hpp"
 #include <stack>
-#include <basefunctions.hpp>
-#include <operations.hpp>
-#include <derivation.hpp>
+#include "basefunctions.hpp"
+#include "operations.hpp"
+#include "derivation.hpp"
 
 Simple X;
 
@@ -81,7 +81,6 @@ double ParsePolynomial::getResult(double value)
   std::stack<std::string> operators;
   std::queue<std::string> componentsOperation;
   std::stack<double> componentsResults;
-  double result = 0.0;
   while (!queue_.empty())
   {
     std::string front = queue_.front();
