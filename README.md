@@ -4,7 +4,7 @@
  To enter an expression you can use:
    1. Your keybord
    2. Application's button
- Operation that can be used:
+# Operation that can be used:
    1. +, -, *, ^ (degree)
    2. AC - clear field for entering an expression
    3. Get result - estimate polynomial derivative in concrete value of x
