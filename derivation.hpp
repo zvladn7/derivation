@@ -96,31 +96,6 @@ public:
 };
 
 template <class F1, class F2>
-class Derivative< Subtract<F1, F2> > {
-public:
-  using Type = Subtract<typename Derivative<F1>::Type, typename Derivative<F2>::Type>;
-
-  Derivative< Subtract<F1, F2> > (const Subtract<F1, F2>& f) :
-    df1_(f.fn1_),
-    df2_(f.fn2_)
-  {
-  }
-
-  double operator()(double x) const
-  {
-    return df1_(x) - df2_(x);
-  }
-
-  Type calculation() const
-  {
-    return df1_.calculation() - df2_.calculation();
-  }
-  Derivative<F1> df1_;
-  Derivative<F2> df2_;
-};
-
-
-template <class F1, class F2>
 class Derivative< Multiply<F1, F2> > {
 public:
   using Type = Add<Multiply<typename Derivative<F1>::Type, F2>, Multiply<F1, typename Derivative<F2>::Type> >;

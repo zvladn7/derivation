@@ -52,24 +52,6 @@ public:
 };
 
 template <class F1, class F2>
-class Subtract {
-public:
-  using Type = Subtract<F1, F2>;
-  Subtract(const F1& f1, const F2& f2) :
-    fn1_(f1),
-    fn2_(f2)
-  {
-  }
-
-  double operator()(double x) const
-  {
-    return fn1_(x) - fn2_(x);
-  }
-  F1 fn1_;
-  F2 fn2_;
-};
-
-template <class F1, class F2>
 class Multiply {
 public:
   using Type = Multiply<F1, F2>;
