@@ -26,7 +26,7 @@ bool PolynomialChecker::isCorrect() {
   {
     return false;
   }
-  //std::for_each(++std::begin(forCheck_), std::end(forCheck_), [&](char current) {
+  char prePrevious = previous;
   for (std::size_t i = 1; i < forCheck_.length(); ++i) {
     char current = forCheck_[i];
     if (isdigit(previous) && !(isdigit(current) || isRightOperation(current) || isPoint(current)))
@@ -49,6 +49,11 @@ bool PolynomialChecker::isCorrect() {
     {
       isCorrect = false;
     }
+    if (isX(prePrevious) && isX(current) && (previous == '*'))
+    {
+      isCorrect = false;
+    }
+    prePrevious = previous;
     previous = current;
 
   }
