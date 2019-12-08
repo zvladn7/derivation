@@ -12,20 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
-  /*Simple X;
-
-  auto f = 3 * Pow(X, 5) - 2 * Pow(X,4) + Pow(X,3) - 10 * Pow(X, 2) + X + 2;
-  auto df = derivative(f);
-  QString str = QString::number(df(2));
-  std::string exp = "3*x^5-2*x^4+x^3-10*x^2+5*x+2";
-  std::string exp1 = "2*x^2+2*x";
-  PolynomialChecker pc(exp);
-  pc.isCorrect();
-  std::stringstream stream(exp);
-  ParsePolynomial pp(stream);
-  double d = pp.getResult();
-  std::cout << d << "\n";
-  QString str2 = QString::number(d);*/
   connect(ui->button_0, SIGNAL(clicked(bool)), this, SLOT(get_numbers()));
   connect(ui->button_1, SIGNAL(clicked(bool)), this, SLOT(get_numbers()));
   connect(ui->button_2, SIGNAL(clicked(bool)), this, SLOT(get_numbers()));
@@ -62,7 +48,7 @@ void MainWindow::get_result()
   {
     std::stringstream stream(expression);
     ParsePolynomial parseString(stream);
-    ui->derivationResult->setText(QString::number(parseString.getResult(ui->x_value->text().toDouble())));
+    ui->derivationResult->setText(QString(std::to_string(parseString.getResult(ui->x_value->text().toDouble())).c_str()));
   }
   else
   {
